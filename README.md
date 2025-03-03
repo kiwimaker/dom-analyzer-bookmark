@@ -1,121 +1,78 @@
-# 🔍 DOM Analyzer Bookmark
+# DOM Analyzer Bookmark
 
-Una herramienta de análisis del DOM que se ejecuta como un marcador de navegador, proporcionando estadísticas detalladas sobre la estructura, accesibilidad, SEO y rendimiento de cualquier página web.
+Un simple marcador de JavaScript que analiza la estructura del DOM de cualquier página web y muestra métricas clave en la consola del navegador.
 
-## 📋 Características
+## Características
 
-- **Estadísticas Generales**
-  - Total de nodos
-  - Elementos HTML
-  - Nodos de texto
-  - Nodos de comentario
-  - Profundidad máxima del DOM
-  - Promedio de nodos por nivel
+El script proporciona las siguientes métricas:
 
-- **🚀 Métricas de Rendimiento**
-  - Elementos muy anidados (>6 niveles)
-  - Elementos con muchos hijos (>20)
-  - Scripts y estilos inline
-  - Tamaño de código inline
+- **Total de nodos**: Cuenta el número total de elementos dentro de la etiqueta `<body>`.
+- **Profundidad máxima del DOM**: Calcula la profundidad máxima de anidación en la estructura del DOM.
+- **Nodos invisibles**: Identifica y cuenta los elementos ocultos mediante diferentes técnicas:
+  - `display: none`
+  - `visibility: hidden`
+  - `opacity: 0`
+- **Visualización de elementos ocultos**: Resalta temporalmente los elementos ocultos para verificación visual, usando diferentes colores según el método de ocultamiento.
 
-- **♿ Análisis de Accesibilidad**
-  - Imágenes sin atributo alt
-  - Campos de formulario sin label
-  - ARIA labels faltantes
-  - Conteo de elementos interactivos
+## Cómo usar
 
-- **🔍 Métricas SEO**
-  - Estructura de encabezados (h1-h6)
-  - Meta tags
-  - Links sin texto
-  - Imágenes sin texto alternativo
+### Versión estándar
 
-- **📊 Análisis de Etiquetas**
-  - Top 10 etiquetas más usadas
-  - Distribución de atributos
-  - Estadísticas por tipo de elemento
+1. Crea un nuevo marcador en tu navegador.
+2. Dale un nombre como "DOM Analyzer".
+3. En el campo URL, copia y pega el código JavaScript del archivo `script.js`.
+4. Guarda el marcador.
+5. Navega a cualquier página web y haz clic en el marcador para analizar su DOM.
+6. Abre la consola del navegador (F12 o Cmd+Option+J) para ver los resultados.
+7. Los elementos ocultos se restaurarán a su estado original después de 5 segundos.
 
-- **💾 Persistencia de Datos**
-  - Guarda estadísticas por URL
-  - Mantiene historial de las últimas 10 ejecuciones
-  - Comparación con análisis anteriores
+### Versión para Chrome
 
-## 🚀 Instalación
+Si estás usando Chrome y tienes problemas con los saltos de línea en los marcadores:
 
-1. Crea un nuevo marcador en tu navegador
-2. Como nombre, escribe "Analizar DOM" (o el que prefieras)
-3. En el campo URL, copia y pega todo el contenido del archivo `bookmark.js`
-4. Guarda el marcador
+1. Usa el archivo `script-tab.js` que contiene una versión compacta del script (sin saltos de línea).
+2. Copia todo el contenido y pégalo en el campo URL del marcador.
+3. Esta versión funciona igual que la versión estándar, pero tiene un tiempo de restauración de 2 minutos en lugar de 5 segundos, lo que te da más tiempo para examinar los elementos ocultos.
 
-## 📖 Uso
+## Visualización de elementos ocultos
 
-1. Navega a cualquier página web que quieras analizar
-2. Abre la consola del navegador (F12 o Cmd+Option+J en Mac)
-3. Haz clic en el marcador "Analizar DOM"
-4. Los resultados aparecerán en la consola del navegador
+Cuando ejecutas el script, los elementos ocultos se hacen temporalmente visibles con diferentes colores según el método de ocultamiento:
 
-## 📊 Ejemplo de Salida
+- **Rojo**: Elementos con `display: none`
+- **Azul**: Elementos con `visibility: hidden`
+- **Verde**: Elementos con `opacity: 0`
+
+Esto te permite verificar visualmente qué elementos están siendo detectados como ocultos y mediante qué técnica.
+
+## Ejemplo de salida
 
 ```
-📊 Análisis del DOM:
-✅ Total de nodos: 1234
-🔹 Elementos HTML: 567
-📝 Nodos de texto: 456
-💬 Comentarios: 21
-📏 Profundidad máxima: 8
-📊 Promedio nodos/nivel: 12.34
-
-🚀 Rendimiento:
-• Elementos muy anidados (>6): 5
-• Elementos con muchos hijos (>20): 3
-• Scripts inline: 2
-• Estilos inline: 15
-
-🔍 SEO:
-• H1: 1
-• H2: 5
-• H3: 8
-• Meta tags: 10
-• Links sin texto: 2
-
-♿ Accesibilidad:
-• Imágenes sin alt: 3
-• Campos sin label: 2
-• ARIA labels faltantes: 4
-• Elementos interactivos: 25
-
-📋 Top 10 etiquetas:
-• div: 150
-• span: 89
-• p: 67
-• a: 45
-...
+Total de nodos dentro de <body>: 1250
+Profundidad máxima del DOM: 15
+Nodos invisibles: 350
+  - Por display:none: 320
+  - Por visibility:hidden: 25
+  - Por opacity:0: 5
+Porcentaje de nodos invisibles: 28.00%
+Los elementos ocultos han sido resaltados temporalmente con diferentes colores:
+  - Rojo: display:none
+  - Azul: visibility:hidden
+  - Verde: opacity:0
+Se restaurarán en 5 segundos. (2 minutos en la versión para Chrome)
 ```
 
-## 🛠️ Características Técnicas
+## Uso técnico
 
-- No requiere dependencias externas
-- Funciona en cualquier navegador moderno
-- Análisis no intrusivo de la página
-- Almacenamiento local para comparaciones históricas
-- Detección automática de problemas comunes
+Este script es útil para:
 
-## ⚠️ Consideraciones
+- Analizar la complejidad de una página web
+- Identificar posibles problemas de rendimiento debido a un DOM demasiado profundo
+- Detectar elementos ocultos que podrían estar afectando el rendimiento
+- Verificar visualmente la estructura de elementos ocultos
+- Identificar diferentes técnicas de ocultamiento utilizadas en la página
 
-- El análisis se realiza sobre el DOM actual, incluyendo cualquier modificación dinámica
-- Los datos se almacenan en localStorage, específicos para cada URL
-- Se mantiene un historial de las últimas 10 ejecuciones por URL
-- El análisis es instantáneo y no afecta el rendimiento de la página
+## Consideraciones
 
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Algunas ideas para mejorar:
-- Añadir más métricas de rendimiento
-- Mejorar el análisis de accesibilidad
-- Añadir exportación de datos
-- Implementar visualizaciones gráficas
-- Añadir recomendaciones específicas de mejora
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Siéntete libre de usar, modificar y distribuir el código. 
+- El script solo analiza elementos dentro del `<body>`.
+- Para elementos con `display: none`, se cuentan también todos sus descendientes como ocultos.
+- Para elementos con `visibility: hidden` y `opacity: 0`, solo se cuenta el elemento específico, ya que sus descendientes pueden tener diferentes configuraciones de visibilidad.
